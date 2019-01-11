@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block body %}
+  {{message}}
+  <div><a href="{{"/setup?installation_id=" + installid}}">{{ _("Setup") }}</a></div>
+{% end %}
