@@ -1,0 +1,6 @@
+KafkaHome : 'kafka/kafka_2.12-2.1.0'
+TopicName : 'ghooks'
+Hosts     : 'localhost:9092,localhost:9093'
+Zookeeper : 'localhost:2181'
+Partitions:  2
+Replication: 2

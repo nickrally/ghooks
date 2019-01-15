@@ -7,12 +7,15 @@ import hashlib
 import pprint
 from pyral import Rally
 
+
 HOOK_SECRET_KEY = os.environb[b'HOOK_SECRET_KEY']
 
 class NoResultError(Exception):
     pass
 
 class GithubHookHandler(tornado.web.RequestHandler):
+    def initialize(self, kafka_producer):
+        self.kafka_producer = kafka_producer
 
     def _validate_signature(self, data):
         sha_name, signature = self.request.headers._dict['X-Hub-Signature'].split('=')
@@ -49,6 +52,7 @@ class GithubHookHandler(tornado.web.RequestHandler):
         #     print("will be posting to a kafka topic")
         # else:
         #     print("will NOT be posting to a kafka topic")
+        self.kafka_producer.produce(post_data)
         pprint.pprint(payload)
         self.send_response({'msg': 'ok'}, status=200)
 
