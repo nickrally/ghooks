@@ -8,17 +8,16 @@ from tornado.options import define, options
 import tornado.locks
 
 define("db_database", default="installations", help="database name")
-define("db_host", default="127.0.0.1", help="database host")
-define("db_port", default=5432, help="database port")
-define("db_user", default="pairing", help="database user")
-define("db_password", default="pairing", help="database password")
+define("db_host",     default="127.0.0.1",     help="database host")
+define("db_port",     default=5432,            help="database port")
+define("db_user",     default="pairing",       help="database user")
+define("db_password", default="pairing",       help="database password")
 
 ROUTES = [ (r"/",             GithubHookHandler),
            (r"/home",         GithubHomeHandler),
            (r"/setup",        GithubSetupHandler),
            (r"/setup_result", GithubSetupHandler)
          ]
-
 
 
 async def maybe_create_table(db):
