@@ -46,7 +46,6 @@ class GithubHookHandler(tornado.web.RequestHandler):
         if not self._validate_signature(post_data):
             self.send_response(401)
             return
-        print("got a message of type %s from GitHub..." % type(post_data))
         payload = json.loads(post_data)
         # if self.parse_commits(payload['commits']):
         #     print("will be posting to a kafka topic")
